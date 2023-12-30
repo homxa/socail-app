@@ -1,23 +1,40 @@
-import logo from './logo.svg';
+import Login from './Account/login';
+import SignUp from './Account/signUp';
 import './App.css';
-
+import {BrowserRouter as Router, Routes,Route} from 'react-router-dom'
+import { auth } from './config/config';
+import {useAuthState} from 'react-firebase-hooks/auth'
+import {createContext, useState} from 'react'
+import Private from './component/private';
+import Create from './component/content/create';
+export const Appcontext = createContext();
 function App() {
+  let user;
+  const [userDetails] = useAuthState(auth);
+
+  if(userDetails){
+    user = userDetails
+  
+  }
+else if (localStorage.getItem('users')){
+user = JSON.parse(localStorage.getItem('users'))
+}
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Appcontext.Provider value={{user}}>
+      <Router >
+        <Routes>
+          <Route element={<Private/>}>
+         <Route path='Post' element={<Create/>}/>
+          </Route>
+          <Route path='/' element={<Login/> }/>
+          <Route path='/signUP' element={<SignUp/> }/>
+        </Routes>
+      </Router>
+      </Appcontext.Provider>
+
     </div>
   );
 }
