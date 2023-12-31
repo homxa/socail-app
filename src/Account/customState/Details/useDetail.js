@@ -6,7 +6,7 @@ export function useDetails(){
  const {user} = useContext(Appcontext)
  const [email,setEmail] = useState(user.email);
  const [userId,setUserId] = useState(user.uid)
- const [photo, setPhoto] = useState(user.photoURL)
+ const [photoURL, setPhoto] = useState(user.photoURL)
  const [name,setEmailName] = useState(null)  
 
 
@@ -29,5 +29,5 @@ useEffect(()=>{
 getName()
 },[])
 // const name = useState( )
-return [name,email]
+return {name,email,userId,photoURL}
 }

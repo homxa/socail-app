@@ -18,7 +18,7 @@ const nav = useNavigate()
   const submitData = async(data)=>{
     try{
       await signInWithEmailAndPassword(auth, data.email, data.password)
-     nav('Post')
+     nav('Home')
       
     } catch(err){
 console.log(err)
@@ -29,7 +29,7 @@ console.log(err)
   const signIN = async()=>{
     try{
       await signInWithPopup(auth,provider)
-     nav('Post')
+     nav('Home')
       
 
     } catch(err){

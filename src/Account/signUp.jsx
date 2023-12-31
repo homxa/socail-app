@@ -32,7 +32,7 @@ const nameRef = collection(db,'userName')
         userId: current.uid
 
        })
-       nav('/Post')
+       nav('/Home')
 
      }
     
