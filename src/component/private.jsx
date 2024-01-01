@@ -10,27 +10,27 @@ import { storage } from "../config/config";
 import { db } from "../config/config";
 import { collection,addDoc, query, where, getDocs } from "firebase/firestore";
 import { useProfile } from "../Account/customState/Details/useProfile";
+import { useImg } from "../Account/currentUser/useimg";
 export default function Private() {
   const { user } = useContext(Appcontext);
   const [userName] = useUserName();
   const { photoURL } = useDetails();
   const [profile, setProfile] = useState(null)
-const [uploadURL, setUpload] = useState('')
 const [userProfile,setUserProfile] = useState(null)
-const [pic] = useProfile(user.uid);
+const [pic,isLoading] = useProfile(user.uid);
+const [loading,setLoading] = useState(false)
+
 useEffect(()=>{
   setUserProfile(pic)
-console.log(pic)
 
 },[pic])
-
   const upLoadProfile = async()=>{
+    setLoading(true)
     try{
       const imgstoreRef = ref(storage, `image/${profile.name + v4()}`)
       const imgSent = await uploadBytes(imgstoreRef, profile);
       const imgURL = await getDownloadURL(imgSent.ref)
       //setting to fireStore 
-      setUpload(imgURL)
 const profileRef = collection(db,'profile')
 const addedImg = await addDoc(profileRef, {
  image: imgURL,
@@ -48,7 +48,7 @@ console.log(getten)
     } catch (err){
       console.log(err)
     }
-
+setLoading(false)
   }
 
  
@@ -103,7 +103,8 @@ userProfile ?  <img src={userProfile} />
 
             
 }
-            <h4>{userName}</h4>
+            <h4>{userName} </h4>
+            {loading || isLoading && (<h2>Loading...</h2>)}
           </div>
         </div>
 
