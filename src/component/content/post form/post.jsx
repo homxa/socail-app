@@ -35,7 +35,7 @@ postImg: yup.mixed().nullable().optional(),
         const postLoca = collection(db,'posts')
          await addDoc(postLoca,{
 userId: userId,
-img: image,
+userImg: image?  image : '',
 userName: userName,
 postImg: getDowload,
 postText: data.post,
@@ -47,7 +47,7 @@ postText: data.post,
         const postLoca = collection(db,'posts')
        await addDoc(postLoca,{
 userId: userId,
-userImg: image,
+userImg: image? image: '',
 userName: userName,
 postText: data.post,
 

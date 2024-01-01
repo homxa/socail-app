@@ -54,3 +54,32 @@ display: none;
   width: 400px;
   height: 300px;
 }
+.user-d{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+.j-s{
+  margin-bottom: 25px;
+
+}
+.user-d img{
+width: 20px;
+height: 20px;
+border-radius: 50%;
+}
+.user-d p{
+  font-weight: 600;
+  text-transform: capitalize;
+  font-size: 13px;
+  opacity: 60%;
+}
+.posts{
+}
+.posts img{
+width: 300px;
+height: 300px;
+}
+.post p{
+
+}
