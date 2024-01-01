@@ -5,6 +5,7 @@ import { signOut } from 'firebase/auth'
 import { useNavigate } from "react-router-dom";
 
 import { useUserName } from '../../Account/currentUser/userName'
+import Post from './post form/post';
 export default function Create() {
 const [userName] = useUserName()
 const nav = useNavigate()
@@ -21,7 +22,10 @@ const logOut = async()=>{
     }
   return (
     <div>
-      <h3>hello it working {userName}</h3>
+      <div>
+
+        <Post/>
+      </div>
 <button onClick={logOut}>logOut</button>
     </div>
   )

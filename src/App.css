@@ -7,7 +7,6 @@
   text-align: center;
 }
 .top{
- background-color: red;
  
 }
 .top .user{
@@ -50,4 +49,8 @@ padding-right: 20px;
 }
 .sett input{
 display: none;
+}
+.imgs img{
+  width: 400px;
+  height: 300px;
 }
