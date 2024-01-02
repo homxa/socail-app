@@ -1,13 +1,16 @@
-import { collection, getDocs } from 'firebase/firestore'
+import { addDoc, collection, getDocs, query, where } from 'firebase/firestore'
 import React, { useContext, useEffect, useState } from 'react'
 import { db } from '../../config/config'
 import { useDetails } from '../../Account/customState/Details/useDetail'
 import { Appcontext } from '../../App'
+import HomePost from './post form/homePost'
 
 export default function Home() {
-  const {userId} = useDetails()
-  console.log(userId)
-const [post,setPost] = useState()
+
+  const [post,setPost] = useState()
+ 
+
+//geting doc
 const getDoc = async()=>{
 try{
   const docCollection = collection(db,'posts');
@@ -24,24 +27,14 @@ setPost(getten.docs.map((doc)=> {
 useEffect(()=>{
   getDoc()
 },[])
-console.log(post)
   return (
     <div>
 
-{post?.map((doc)=>{
-  console.log(doc.userImg)
+{post?.map((docs)=>{
+ 
 return(
 <div className='j-s'>
-<div className='user-d'>
-  <img src={doc.userImg} alt="" />
-  <p>@{doc.userName}</p>
-
-</div>
-<div className='posts'>
-<p>{doc.postText}</p>
-{doc.postImg?<img src={doc.postImg} alt="" />:''}
-<p><button>&#x1F44D;</button></p>
-</div>
+<HomePost doc={docs}/>
 
 </div>
 
